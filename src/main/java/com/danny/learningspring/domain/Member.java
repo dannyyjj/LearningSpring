@@ -1,5 +1,6 @@
 package com.danny.learningspring.domain;
 
+
 public class Member {
 
     private long id;

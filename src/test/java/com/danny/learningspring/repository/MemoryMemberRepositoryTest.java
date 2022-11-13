@@ -21,7 +21,7 @@ public class MemoryMemberRepositoryTest {
     @Test
     public void save(){
         Member member = new Member();
-        member.setName("String`");
+        member.setName("string`");
 
         repository.save(member);
 
@@ -36,7 +36,7 @@ public class MemoryMemberRepositoryTest {
         repository.save(member1);
 
         Member member2 = new Member();
-        member2.setName("spring1");
+        member2.setName("spring2");
         repository.save(member2);
 
         Member result = repository.findName("spring1").get();
