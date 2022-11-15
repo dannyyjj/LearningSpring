@@ -18,9 +18,9 @@ public class JdbcTemplateMemberRepository implements MemberRepository{
 
     private final JdbcTemplate jdbcTemplate;
 
-    public JdbcTemplateMemberRepository(DataSource dataSource) {
-        jdbcTemplate = new JdbcTemplate(dataSource);
-    }
+//    public JdbcTemplateMemberRepository(DataSource dataSource) {
+//        jdbcTemplate = new JdbcTemplate(dataSource);
+//    }
 
     @Override
     public Member save(Member member) {

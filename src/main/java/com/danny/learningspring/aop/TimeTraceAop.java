@@ -9,7 +9,7 @@ import org.aspectj.lang.annotation.Aspect;
 @Aspect
 public class TimeTraceAop {
 
-    @Around("execution(* com.danny.learningspring.service..*(..))")
+    @Around("execution(* com.danny.learningspring..*(..)) && !target(com.danny.learningspring.SpringConfig)")
     public Object execute(ProceedingJoinPoint joinPoint) throws Throwable {
         long start = System.currentTimeMillis();
         log.error("MethodName===>{}", joinPoint.getSignature().getName());

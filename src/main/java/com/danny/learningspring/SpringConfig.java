@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.persistence.EntityManager;
 import javax.sql.DataSource;
@@ -17,7 +18,7 @@ public class SpringConfig {
 
     private final MemberRepository memberRepository;
 //    private final EntityManager em;
-//    private final DataSource dataSource;
+    private final DataSource dataSource;
 
 //    @Autowired
 //    public SpringConfig(DataSource dataSource) {
@@ -36,7 +37,7 @@ public class SpringConfig {
 //    @Bean
 //    public MemberRepository memberRepository() {
 //        return new JpaMemberRepository(em);
-//        return new JdbcTemplateMemberRepository(dataSource);
+//        return new JdbcTemplateMemberRepository((JdbcTemplate) dataSource);
 //        return new JdbcMemberRepository(dataSource);
 //        return new MemoryMemberRepository();
 //    }
