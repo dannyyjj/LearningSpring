@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class HelloController {
-
+    // ~~/??
     @GetMapping("hello")
     public String hello(Model model) {
         model.addAttribute("data", "hello Danny");
@@ -17,7 +17,10 @@ public class HelloController {
     }
 
     @GetMapping("hello-mvc")
-    public String helloMvc(@RequestParam(value = "name") String name, Model model) {
+    public String helloMvc(@RequestParam(value = "name", required = false) String name, Model model) {
+        if (name == null) {
+            name = "you need to login";
+        }
         model.addAttribute("name", name);
         return "hello-template";
     }
@@ -46,5 +49,6 @@ public class HelloController {
             this.name = name;
         }
     }
+
 }
 

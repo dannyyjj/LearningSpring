@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+// HTTP의 BODY에 문자 내용을 직접 반환, viewResolver대신 HttpMessageConverter가 동작
 @RestController
 public class HelloRestController {
 

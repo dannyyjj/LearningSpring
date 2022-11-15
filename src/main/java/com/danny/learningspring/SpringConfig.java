@@ -12,13 +12,13 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import javax.persistence.EntityManager;
 import javax.sql.DataSource;
 
-@Configuration
+@Configuration  //의존관계 설정, Bean을 등록
 @RequiredArgsConstructor
 public class SpringConfig {
 
-    private final MemberRepository memberRepository;
-//    private final EntityManager em;
     private final DataSource dataSource;
+    private final EntityManager em;
+    private final MemberRepository memberRepository;
 
 //    @Autowired
 //    public SpringConfig(DataSource dataSource) {
@@ -26,19 +26,21 @@ public class SpringConfig {
 //    }
 
     @Bean
-    public MemberService memberService(){
-        return new MemberService(memberRepository);
+    public TimeTraceAop timeTraceAop() {
+        return new TimeTraceAop();
     }
 
     @Bean
-    public TimeTraceAop timeTraceAop() { return new TimeTraceAop();}
-
+    public MemberService memberService() {
+        return new MemberService(memberRepository);
+    }
 
 //    @Bean
 //    public MemberRepository memberRepository() {
-//        return new JpaMemberRepository(em);
-//        return new JdbcTemplateMemberRepository((JdbcTemplate) dataSource);
-//        return new JdbcMemberRepository(dataSource);
 //        return new MemoryMemberRepository();
+//        return new JdbcMemberRepository(dataSource);
+//        return new JdbcTemplateMemberRepository(dataSource);
+//        return new JpaMemberRepository(em);
 //    }
+
 }

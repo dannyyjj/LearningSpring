@@ -1,22 +1,28 @@
 package com.danny.learningspring.repository;
 
 import com.danny.learningspring.domain.Member;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.datasource.DataSourceUtils;
 import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+@Slf4j
+@RequiredArgsConstructor
 public class JdbcMemberRepository implements MemberRepository {
+
+    // Spring 에서 DI 받음
     private final DataSource dataSource;
-    public JdbcMemberRepository(DataSource dataSource) {
-        this.dataSource = dataSource;
-    }
+
     @Override
     public Member save(Member member) {
+        log.error("Repository===>JdbcMemberRepository//save");
         String sql = "insert into member(name) values(?)";
         Connection conn = null;
-        PreparedStatement pstmt = null;
+        PreparedStatement pstmt = null; // SQL 구문을 실행
         ResultSet rs = null;
         try {
             conn = getConnection();
@@ -63,6 +69,7 @@ public class JdbcMemberRepository implements MemberRepository {
     }
     @Override
     public List<Member> findAll() {
+        log.error("Repository===>JdbcMemberRepository//findAll");
         String sql = "select * from member";
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -112,6 +119,7 @@ public class JdbcMemberRepository implements MemberRepository {
     private Connection getConnection() {
         return DataSourceUtils.getConnection(dataSource);
     }
+
     private void close(Connection conn, PreparedStatement pstmt, ResultSet rs)
     {
         try {

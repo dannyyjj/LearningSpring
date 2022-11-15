@@ -2,16 +2,19 @@ package com.danny.learningspring.repository;
 
 import com.danny.learningspring.domain.Member;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @RequiredArgsConstructor
 public class JpaMemberRepository implements MemberRepository {
     private final EntityManager em;
 
     public Member save(Member member) {
+        log.error("Repository===>JpaMemberRepository//save");
         em.persist(member);
         return member;
     }
@@ -20,6 +23,7 @@ public class JpaMemberRepository implements MemberRepository {
         return Optional.ofNullable(member);
     }
     public List<Member> findAll() {
+        log.error("Repository===>JpaMemberRepository//findAll");
         return em.createQuery("select m from Member m", Member.class)
                 .getResultList();
     }
